@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby 
+
+require 'pry'
+require_relative '../config/environment'
+
+def reset_database
+  Song.drop_table
+  Song.create_table
+  Song.create(name: "Hello", album: "25")
+  Song.create(name: "99 Problems", album: "The Black Album")
+end
+
+reset_database
+
+# Song.all
+# => [#<Song:0x00007ffc7a093098 @album="25", @id=1, @name="Hello">,
+ #<Song:0x00007ffc7a093048 @album="The Black Album", @id=2, @name="99 Problems">]
+
+# Success! We can see both songs in the database as an array of song instances. We can
+# interact with them just like any other Ruby objects:
+
+# Song.all.first
+# => #<Song:0x00007ffc7a0b1480 @album="25", @id=1, @name="Hello">
+# Song.all.last
+# => #<Song:0x00007ffc7a0c4a08 @album="The Black Album", @id=2, @name="99 Problems">
+# Song.all.last.name
+# => "99 Problems"
+# Song.all.last.name.reverse
+# => "smelborP 99"
+
+
+
+binding.pry
+"pls"
